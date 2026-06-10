@@ -1,12 +1,11 @@
-import request from "supertest";
 import { describe, it , expect , beforeEach } from "vitest";
-import app, { resetAccounts, resetTransactions } from "../src/app.js";
+import request from "supertest";
+import app from "../src/app.js";
+import { resetData } from "./helpers/resetData.js";
 
-beforeEach(() => {
-  resetAccounts();
-  resetTransactions();
+beforeEach(() =>{
+  resetData();
 });
-
 
 describe("Accounts API", () => {
   it("should return account information", async () => {
