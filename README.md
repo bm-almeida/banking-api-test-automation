@@ -1,7 +1,6 @@
-
 # Banking API Test Automation
 
-This project is a simple banking API built with Node.js and Express. It is used to practice API test automation using Vitest and Supertest.
+Simple REST API built with Node.js and Express, used for practicing API test automation with Vitest and Supertest.
 
 ## Tech Stack
 
@@ -9,16 +8,34 @@ This project is a simple banking API built with Node.js and Express. It is used 
 - Express.js
 - Vitest
 - Supertest
+- JavaScript (ES Modules)
 
 ## Project Structure
 
+
 src/
-  app.js        Express application with API routes
-  server.js     Server entry point (optional)
+app.js
+server.js
+
+controllers/
+accountController.js
+transferController.js
+
+services/
+transferService.js
+
+validators/
+transferValidator.js
+
+data/
+database.js
 
 tests/
-  accounts.test.js   Tests for account endpoints
-  transfers.test.js  Tests for transfer functionality
+accounts.test.js
+transfers.test.js
+helpers/
+resetData.js
+
 
 ## API Endpoints
 
@@ -26,20 +43,21 @@ tests/
 
 GET /accounts/:id
 
-Returns account data by ID.
+Returns account information.
 
 Response:
+```json
 {
   "id": 1,
   "owner": "Bruno Almeida",
   "balance": 2500
 }
-
-### Create transfer
+Create transfer
 
 POST /transfers
 
-Body:
+Request body:
+
 {
   "fromAccount": 1,
   "toAccount": 2,
@@ -47,37 +65,42 @@ Body:
 }
 
 Response:
+
 {
   "status": "SUCCESS"
 }
-
-### Get transactions
+Get transactions
 
 GET /accounts/:id/transactions
 
-Returns all transactions for an account.
+Returns all transactions for a given account.
 
-## Tests
+Tests
 
-Run tests with:
+Run tests:
 
 npm test
 
-or
+Or:
 
 npx vitest run
 
-Tests cover:
-- Account retrieval
-- Money transfer
-- Error cases (missing account, insufficient funds)
+Covered scenarios:
 
-## Run project
+Account retrieval
+Successful transfer
+Account not found (404)
+Insufficient funds (400)
+Run Project
 
 Install dependencies:
 
 npm install
 
-Run server:
+Start server:
 
 node src/server.js
+Notes
+In-memory data store (no database)
+State is reset during tests using resetData()
+Designed for QA automation practice
